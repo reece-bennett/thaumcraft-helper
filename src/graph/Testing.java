@@ -12,11 +12,8 @@ public class Testing {
     graph.add(new Node("E"));
     graph.add(new Node("F"));
     
-    graph.connect("A", "B");
-    graph.connect("A", "C");
-    graph.connect("A", "D");
-    graph.connect("B", "C");
-    graph.connect("B", "E");
+    graph.connect("A", new String[] {"B", "C", "D"});
+    graph.connect("B", new String[] {"C", "E"});
     //graph.connect("D", "E");
     graph.connect("E", "F");
     

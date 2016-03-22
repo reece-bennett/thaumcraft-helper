@@ -27,20 +27,27 @@ public class Graph {
     return nodes.get(name);
   }
   
-  public void connect(String name1, String name2) {
-    Node node1 = nodes.get(name1);
-    Node node2 = nodes.get(name2);
-    
-    if (node1 == null) {
-      System.err.println(name1 + " was not found in the graph.");
-      return;
-    } else if (node2 == null) {
-      System.err.println(name2 + " was not found in the graph.");
-      return;
+  public void connect(String name, String[] others) {
+    Node node1 = nodes.get(name);
+
+    for (int i = 0; i < others.length; i++) {
+      Node node2 = nodes.get(others[i]);
+      
+      if (node1 == null) {
+        System.err.println(name + " was not found in the graph.");
+        return;
+      } else if (node2 == null) {
+        System.err.println(others[i] + " was not found in the graph.");
+        return;
+      }
+      
+      node1.addNeighbour(node2);
+      node2.addNeighbour(node1);
     }
-    
-    node1.addNeighbour(node2);
-    node2.addNeighbour(node1);
+  }
+  
+  public void connect(String name, String other) {
+    connect(name, new String[] {other});
   }
   
   public ArrayList<Node> getPath(String start, String end) {

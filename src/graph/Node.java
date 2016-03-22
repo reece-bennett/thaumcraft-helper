@@ -6,10 +6,14 @@ public class Node {
   
   private final String name;
   private ArrayList<Node> neighbours;
+  private Node parent;
+  private int distance;
   
   public Node(String name, ArrayList<Node> neighbours) {
     this.name = name;
     this.neighbours = neighbours;
+    parent = null;
+    distance = -1;
   }
   
   public Node(String name) {
@@ -33,6 +37,22 @@ public class Node {
     }
   }
   
+  public Node getParent() {
+    return parent;
+  }
+
+  public void setParent(Node parent) {
+    this.parent = parent;
+  }
+
+  public int getDistance() {
+    return distance;
+  }
+
+  public void setDistance(int distance) {
+    this.distance = distance;
+  }
+
   @Override
   public String toString() {
     String output = "(" + name + " : [";

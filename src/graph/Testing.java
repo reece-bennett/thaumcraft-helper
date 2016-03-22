@@ -8,5 +8,9 @@ public class Testing {
     graph.add(new Node("A"));
     graph.add(new Node("B"));
     
+    graph.connect("A", "B");
+    
+    System.out.println(graph);
+    
   }
 }

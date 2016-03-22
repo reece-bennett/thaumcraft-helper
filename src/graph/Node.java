@@ -26,6 +26,21 @@ public class Node {
   }
   
   public void addNeighbour(Node neighbour) {
-    neighbours.add(neighbour);
+    if (!neighbours.contains(neighbour)) {
+      neighbours.add(neighbour);
+    } else {
+      System.err.println("This node already had " + neighbour + " as a neighbour.");
+    }
+  }
+  
+  @Override
+  public String toString() {
+    String output = "(" + name + " : [";
+    for (Node n : neighbours) {
+      output += n.getName() + ",";
+    }
+    output = output.substring(0, output.length()-1);
+    output += "])";
+    return output;
   }
 }

@@ -1,4 +1,4 @@
-package tree;
+package graph;
 
 import java.util.ArrayList;
 
@@ -10,6 +10,11 @@ public class Node {
   public Node(String name, ArrayList<Node> neighbours) {
     this.name = name;
     this.neighbours = neighbours;
+  }
+  
+  public Node(String name) {
+    this.name = name;
+    neighbours = new ArrayList<>();
   }
 
   public String getName() {

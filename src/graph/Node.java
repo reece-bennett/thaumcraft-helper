@@ -39,7 +39,8 @@ public class Node {
     for (Node n : neighbours) {
       output += n.getName() + ",";
     }
-    output = output.substring(0, output.length()-1);
+    // Removes the trailing comma ($ signifies the end of the string)
+    output = output.replaceAll(",$", "");
     output += "])";
     return output;
   }

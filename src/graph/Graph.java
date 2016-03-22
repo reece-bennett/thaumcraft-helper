@@ -1,6 +1,8 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Graph {
 
@@ -39,6 +41,43 @@ public class Graph {
     
     node1.addNeighbour(node2);
     node2.addNeighbour(node1);
+  }
+  
+  public ArrayList<Node> getPath(String start, String end) {
+    LinkedList<Node> frontier = new LinkedList<>();
+    LinkedList<Node> explored = new LinkedList<>();
+    frontier.add(nodes.get(start));
+    
+    // Used for backtracking the graph
+    HashMap<Node, Node> connections = new HashMap<>();
+    
+    while (!frontier.isEmpty()) {
+      Node current = frontier.removeFirst();
+      
+      if (current.getName().equals(end)) {
+        Node backtrack = nodes.get(end);
+        ArrayList<Node> path = new ArrayList<>();
+        while (!backtrack.getName().equals(start)) {
+          path.add(0, backtrack);
+          backtrack = connections.get(backtrack);
+        }
+        path.add(0, backtrack);
+        return path;
+        
+      } else if (!explored.contains(current)) {
+        explored.add(current);
+        ArrayList<Node> neighbours = current.getNeighbours();
+        for (Node n : neighbours) {
+          if (!connections.containsKey(n)) {
+            connections.put(n, current);
+          }
+          if (!frontier.contains(n) && !explored.contains(n)) {
+            frontier.add(n);
+          }
+        }
+      }
+    }
+    return null;
   }
   
   public int size() {

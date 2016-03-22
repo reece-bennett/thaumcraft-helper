@@ -1,21 +1,28 @@
 package graph;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Graph {
 
-  private ArrayList<Node> nodes;
+  private HashMap<String, Node> nodes;
   
   public Graph() {
-    nodes = new ArrayList<>();
+    nodes = new HashMap<>();
   }
 
-  public ArrayList<Node> getNodes() {
+  public HashMap<String, Node> getAll() {
     return nodes;
   }
   
-  public void addNode(Node node) {
-    nodes.add(node);
+  public void add(Node node) {
+    if (nodes.containsKey(node.getName())) {
+      System.err.println("There is already an entry with this name, overwriting.");
+    }
+    nodes.put(node.getName(), node);
+  }
+  
+  public Node get(String name) {
+    return nodes.get(name);
   }
   
   public int size() {

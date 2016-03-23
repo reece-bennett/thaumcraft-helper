@@ -1,0 +1,17 @@
+{
+  "aer" : [],
+  "ignis" : [],
+  "aqua" : [],
+  "terra" : [],
+  "ordo" : [],
+  "gelum" : ["ignis", "perditio"],
+  "lux" : ["ignis", "aer"],
+  "motus" : ["aer", "ordo"],
+  "permutatio" : ["ordo", "perditio"],
+  "potentia" : ["ignis", "ordo"],
+  "tempestas" : ["aer", "aqua"],
+  "vacuos" : ["aer", "perditio"],
+  "venenum" : ["aqua", "perditio"],
+  "victus" : ["aqua", "terra"],
+  "vitreus" : ["ordo", "terra"]
+}

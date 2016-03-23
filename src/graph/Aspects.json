@@ -4,6 +4,7 @@
   "aqua" : [],
   "terra" : [],
   "ordo" : [],
+  "perditio" : [],
   "gelum" : ["ignis", "perditio"],
   "lux" : ["ignis", "aer"],
   "motus" : ["aer", "ordo"],

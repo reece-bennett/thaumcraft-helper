@@ -2,7 +2,6 @@ package graph;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 import eclipsesource.json.Json;
 import eclipsesource.json.JsonArray;
@@ -32,6 +31,6 @@ public class TestReadJson {
       }
     }
     
-    System.out.println(graph.getPath("vacuos", "motus", 3));
+    System.out.println(graph.getPath("vacuos", "motus", 1));
   }
 }

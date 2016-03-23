@@ -1,6 +1,7 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -50,7 +51,7 @@ public class Graph {
     connect(name, new String[] { other });
   }
 
-  public ArrayList<Node> getPath(String start, String end) {
+  /*public ArrayList<Node> getPath(String start, String end) {
     // Start by resetting the parents of all nodes in the graph
     for (Node n : nodes.values()) {
       n.setParent(null);
@@ -89,45 +90,25 @@ public class Graph {
       }
     }
     return null;
-  }
+  }*/
 
-  public ArrayList<Node> pathTo(String start, String end, int minDist) {
-    LinkedList<Node> frontier = new LinkedList<>();
-    
-    for (Node n : nodes.values()) {
-      n.setParent(null);
-      if (n.getName().equals(start)) {
-        n.setDistance(0);
-        frontier.add(n);
-      } else {
-        n.setDistance(Integer.MAX_VALUE);
-      }
-    }
+  public LinkedList<Node> getPath(String start, String end, int steps) {
+    LinkedList<LinkedList<Node>> frontier = new LinkedList<>();
+    frontier.add(new LinkedList<>(Arrays.asList(nodes.get(start))));
     
     while (!frontier.isEmpty()) {
-      Node current = frontier.removeFirst();
-      
-      for (Node n : current.getNeighbours()) {
-        int dist = current.getDistance() + 1;
-        
-        if (n.getName().equals(end) && dist >= minDist && dist < n.getDistance()) {
-          n.setDistance(dist);
-          n.setParent(current);
-          
-          ArrayList<Node> path = new ArrayList<>();
-          Node parent = current;
-          while (!parent.getName().equals(start)) {
-            path.add(0, parent);
-            parent = parent.getParent();
+      LinkedList<Node> path = frontier.removeFirst();
+      if (path.getLast().getName().equals(end) && path.size() > steps+1) {
+        return path;
+      } else {
+        ArrayList<Node> neighbours = path.getLast().getNeighbours();
+        for (Node n : neighbours) {
+          if (!path.contains(n)) {
+            @SuppressWarnings("unchecked")
+            LinkedList<Node> newPath = (LinkedList<Node>) path.clone();
+            newPath.add(n);
+            frontier.add(newPath);
           }
-          path.add(0, parent);
-          path.add(n);
-          return path;
-          
-        } else if (!n.getName().equals(end) && dist < n.getDistance()) {
-          n.setDistance(dist);
-          n.setParent(current);
-          frontier.add(n);
         }
       }
     }

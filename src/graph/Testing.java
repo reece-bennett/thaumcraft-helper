@@ -19,6 +19,7 @@ public class Testing {
     
     System.out.println(graph);
     
-    System.out.println(graph.pathTo("A", "F", 4));
+    System.out.println(graph.getPath("A", "F", 3));
+    System.out.println(graph.getPath("A", "B", 1));
   }
 }

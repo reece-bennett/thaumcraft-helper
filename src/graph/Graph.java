@@ -94,7 +94,16 @@ public class Graph {
 
   public LinkedList<Node> getPath(String start, String end, int steps) {
     LinkedList<LinkedList<Node>> frontier = new LinkedList<>();
-    frontier.add(new LinkedList<>(Arrays.asList(nodes.get(start))));
+
+    if (!nodes.containsKey(start)) {
+      System.err.println("Start node " + start + " is not in the graph.");
+      return null;
+    } else if (!nodes.containsKey(end)) {
+      System.err.println("End node " + end + " is not in the graph.");
+      return null;
+    } else {
+      frontier.add(new LinkedList<>(Arrays.asList(nodes.get(start))));
+    }
     
     while (!frontier.isEmpty()) {
       LinkedList<Node> path = frontier.removeFirst();

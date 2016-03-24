@@ -26,17 +26,7 @@ public class ButtonPanel extends JPanel {
     setPreferredSize(new Dimension(600, 400));
     
     for (String aspect : graph.getAll().keySet()) {
-      JButton button = new JButton();
-      try {
-        Image img = ImageIO.read(getClass().getResource("/aspectIcons/" + aspect + ".png"));
-        button.setIcon(new ImageIcon(img));
-      } catch (IOException | IllegalArgumentException e) {
-        System.err.println("Aspect icon for " + aspect + " not found: " + e.getMessage());
-      }
-      // Remove the margin between image and button's border
-      button.setMargin(new Insets(0, 0, 0, 0));
-      button.setBorder(null);
-      button.setFocusable(false);
+      AspectButton button = new AspectButton(aspect);
       add(button);
     }
   }

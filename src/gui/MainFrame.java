@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -55,6 +56,9 @@ public class MainFrame extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
     
+    // Setting the minimum size helps expand the currently empty output pane
+    setMinimumSize(new Dimension(600, 0));
+    
     OutputPanel outputPanel = new OutputPanel();
     JScrollPane scrollPane = new JScrollPane(outputPanel);
     add(scrollPane, BorderLayout.CENTER);
@@ -91,6 +95,7 @@ public class MainFrame extends JFrame {
       @Override
       public void run() {
         setLookAndFeel("Nimbus");
+        
         MainFrame frame = new MainFrame();
         frame.setVisible(true);
       }

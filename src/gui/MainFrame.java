@@ -25,7 +25,6 @@ public class MainFrame extends JFrame {
 
   public MainFrame() {
     initGraph();
-    System.out.println(graph);
     initUI();
   }
 
@@ -53,14 +52,14 @@ public class MainFrame extends JFrame {
   private void initUI() {
     setTitle("Thaumcraft Helper");
     setSize(300, 200);
-    setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
 
-    ButtonPanel bPanel = new ButtonPanel(graph);
-    add(bPanel);
+    Sidebar sidebar = new Sidebar(graph);
+    add(sidebar);
 
     pack();
+    setLocationRelativeTo(null);
   }
 
   public static void setLookAndFeel(String name) {
@@ -68,7 +67,6 @@ public class MainFrame extends JFrame {
       
       LookAndFeelInfo[] installed = UIManager.getInstalledLookAndFeels();
       for (LookAndFeelInfo info : installed) {
-        System.out.println(info.getClassName());
         if (info.getName().contains(name)) {
           UIManager.setLookAndFeel(info.getClassName());
         }

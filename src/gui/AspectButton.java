@@ -2,8 +2,6 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -14,7 +12,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
-import javax.swing.event.ChangeEvent;
 
 @SuppressWarnings("serial")
 public class AspectButton extends JButton implements MouseListener {
@@ -22,7 +19,6 @@ public class AspectButton extends JButton implements MouseListener {
   // States can be 0: not selected, 1: start aspect, 2: end aspect
   private int state;
   private String aspect;
-  private Border paddingBorder;
 
   public AspectButton(String aspect) {
     super();
@@ -32,8 +28,7 @@ public class AspectButton extends JButton implements MouseListener {
   }
 
   private void initButton() {
-    paddingBorder = BorderFactory.createEmptyBorder(4, 4, 4, 4);
-    setBorder(paddingBorder);
+    setBorder(makePadding(4));
     setFocusable(false);
 
     addMouseListener(this);
@@ -45,6 +40,10 @@ public class AspectButton extends JButton implements MouseListener {
       System.err.println("Aspect icon for " + aspect + " not found: " + e.getMessage());
     }
   }
+  
+  private Border makePadding(int width) {
+    return BorderFactory.createEmptyBorder(width, width, width, width);
+  }
 
   public int getState() {
     return state;
@@ -54,17 +53,17 @@ public class AspectButton extends JButton implements MouseListener {
     switch (state) {
       case 0:
         this.state = state;
-        setBorder(paddingBorder);
+        setBorder(makePadding(4));
         break;
       case 1:
         this.state = state;
         setBorder(
-            BorderFactory.createCompoundBorder(paddingBorder, BorderFactory.createLineBorder(new Color(255, 0, 0), 2)));
+            BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(255, 0, 0), 2), makePadding(2)));
         break;
       case 2:
         this.state = state;
         setBorder(
-            BorderFactory.createCompoundBorder(paddingBorder, BorderFactory.createLineBorder(new Color(0, 0, 255), 2)));
+            BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(0, 0, 255), 2), makePadding(2)));
         break;
       default:
         System.err.println("Unknown state (" + state + ") for button " + aspect);
@@ -73,7 +72,7 @@ public class AspectButton extends JButton implements MouseListener {
 
   @Override
   public void mouseClicked(MouseEvent e) {
-    
+
   }
 
   @Override

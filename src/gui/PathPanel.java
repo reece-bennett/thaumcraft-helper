@@ -2,11 +2,15 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Image;
+import java.io.IOException;
 import java.util.LinkedList;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,7 +35,11 @@ public class PathPanel extends JPanel {
     
     setBorder(BorderFactory.createLineBorder(new Color(170, 170, 180)));
     
-    JLabel header = new JLabel(path.getFirst().getName() + " \u2192 " + path.getLast().getName());
+    String start = path.getFirst().getName();
+    start = start.substring(0, 1).toUpperCase() + start.substring(1);
+    String end = path.getLast().getName();
+    end = end.substring(0, 1).toUpperCase() + end.substring(1);
+    JLabel header = new JLabel(start + " \u2192 " + end);
     
     JButton close = new JButton("X");
     
@@ -39,7 +47,13 @@ public class PathPanel extends JPanel {
     pathContainer.setLayout(new BoxLayout(pathContainer, BoxLayout.Y_AXIS));
     
     for (Node n : path) {
-      JLabel aspect = new JLabel(n.getName());
+      JLabel aspect = new JLabel();
+      try {
+        Image img = ImageIO.read(getClass().getResource("/aspectIcons/" + n.getName() + ".png"));
+        aspect.setIcon(new ImageIcon(img));
+      } catch (IOException | IllegalArgumentException e) {
+        System.err.println("Aspect icon for " + n.getName() + " not found: " + e.getMessage());
+      }
       aspect.setAlignmentX(Component.CENTER_ALIGNMENT);
       pathContainer.add(aspect);
       

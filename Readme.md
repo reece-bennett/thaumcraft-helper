@@ -3,8 +3,10 @@ This Thaumcraft Helper aims to aid players in finding combinations of aspects fo
 # To-do
  - ~~Fill in actual Thaumcraft aspects as nodes and their connections~~
  - Javadoc
- - Gui with aspect and intermediate step selection
- - Connections output which scrolls to keep the most recent output in view
- - Fill comboBoxes with aspect names
- - Maybe just icons that you can click? (Left click and right click to get start/end. Also tooltips with name of aspect or names below maybe)
+ - ~~Gui with aspect and intermediate step selection~~
+ - ~~Connections output which scrolls to keep the most recent output in view~~
+ - ~~Fill comboBoxes with aspect names~~ (No longer using comboboxes for aspects)
  - ~~Custom button class that has three states: first, second or none. First/second will colour the outline of the button with different colours and none will have no outline.~~
+ - Tooltips on icons
+ - Add background behind aspects in output pane
+ - Make aspect icons smaller in sidebar

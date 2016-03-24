@@ -2,7 +2,10 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.LinkedList;
 
@@ -18,12 +21,14 @@ import javax.swing.JPanel;
 import graph.Node;
 
 @SuppressWarnings("serial")
-public class PathPanel extends JPanel {
+public class PathPanel extends JPanel implements ActionListener {
   
   private LinkedList<Node> path;
+  private OutputPanel outputPanel;
 
-  public PathPanel(LinkedList<Node> path) {
+  public PathPanel(LinkedList<Node> path, OutputPanel outputPanel) {
     this.path = path;
+    this.outputPanel = outputPanel;
     initUI();
   }
   
@@ -40,8 +45,10 @@ public class PathPanel extends JPanel {
     String end = path.getLast().getName();
     end = end.substring(0, 1).toUpperCase() + end.substring(1);
     JLabel header = new JLabel(start + " \u2192 " + end);
+    header.setFont(header.getFont().deriveFont(Font.BOLD));
     
-    JButton close = new JButton("X");
+    JButton close = new JButton("\u2715");
+    close.addActionListener(this);
     
     JPanel pathContainer = new JPanel();
     pathContainer.setLayout(new BoxLayout(pathContainer, BoxLayout.Y_AXIS));
@@ -75,5 +82,11 @@ public class PathPanel extends JPanel {
             .addComponent(header)
             .addComponent(close))
         .addComponent(pathContainer));
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    outputPanel.removePath(this);
+    revalidate();
   }
 }

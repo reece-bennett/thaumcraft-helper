@@ -13,7 +13,13 @@ public class OutputPanel extends JPanel {
   }
   
   public void addPath(LinkedList<Node> path) {
-    add(new PathPanel(path));
+    add(new PathPanel(path, this));
     revalidate();
+  }
+  
+  public void removePath(PathPanel path) {
+    remove(path);
+    revalidate();
+    repaint();
   }
 }

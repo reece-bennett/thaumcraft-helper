@@ -2,18 +2,18 @@ package graph;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.TreeMap;
 
 public class Graph {
 
-  private HashMap<String, Node> nodes;
+  private TreeMap<String, Node> nodes;
 
   public Graph() {
-    nodes = new HashMap<>();
+    nodes = new TreeMap<>();
   }
 
-  public HashMap<String, Node> getAll() {
+  public TreeMap<String, Node> getAll() {
     return nodes;
   }
 

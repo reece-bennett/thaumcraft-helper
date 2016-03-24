@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -10,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import graph.Graph;
+import graph.Node;
 
 @SuppressWarnings("serial")
 public class Sidebar extends JPanel implements ActionListener {
@@ -17,9 +19,11 @@ public class Sidebar extends JPanel implements ActionListener {
   private Graph graph;
   private ButtonPanel bPanel;
   private JComboBox<Integer> stepsB;
+  private OutputPanel outputPanel;
 
-  public Sidebar(Graph graph) {
+  public Sidebar(Graph graph, OutputPanel outputPanel) {
     this.graph = graph;
+    this.outputPanel = outputPanel;
     initUI();
   }
 
@@ -49,6 +53,8 @@ public class Sidebar extends JPanel implements ActionListener {
   public void actionPerformed(ActionEvent arg0) {
     System.out.println("Finding path between " + bPanel.getFirst() + " and " + bPanel.getSecond() + " with "
         + stepsB.getSelectedItem());
-    System.out.println(graph.getPath(bPanel.getFirst(), bPanel.getSecond(), stepsB.getSelectedIndex()));
+    LinkedList<Node> path = graph.getPath(bPanel.getFirst(), bPanel.getSecond(), stepsB.getSelectedIndex());
+    System.out.println(path);
+    outputPanel.addPath(path);
   }
 }

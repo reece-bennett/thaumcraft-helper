@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -53,8 +54,12 @@ public class MainFrame extends JFrame {
     setTitle("Thaumcraft Helper");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
+    
+    OutputPanel outputPanel = new OutputPanel();
+    JScrollPane scrollPane = new JScrollPane(outputPanel);
+    add(scrollPane, BorderLayout.CENTER);
 
-    Sidebar sidebar = new Sidebar(graph);
+    Sidebar sidebar = new Sidebar(graph, outputPanel);
     add(sidebar, BorderLayout.LINE_START);
 
     pack();

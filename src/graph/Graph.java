@@ -107,7 +107,7 @@ public class Graph {
     
     while (!frontier.isEmpty()) {
       LinkedList<Node> path = frontier.removeFirst();
-      if (path.getLast().getName().equals(end) && path.size() > steps+1) {
+      if (path.getLast().getName().equals(end) && path.size() > steps+2) {
         return path;
       } else {
         ArrayList<Node> neighbours = path.getLast().getNeighbours();

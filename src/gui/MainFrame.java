@@ -21,19 +21,45 @@ import graph.Node;
 @SuppressWarnings("serial")
 public class MainFrame extends JFrame {
 
+  private Graph graph;
+
   public MainFrame() {
+    initGraph();
+    System.out.println(graph);
     initUI();
   }
-  
+
+  private void initGraph() {
+    // Read the Json
+    JsonObject aspects = null;
+    try {
+      aspects = Json.parse(new InputStreamReader(MainFrame.class.getResourceAsStream("/graph/Aspects.json")))
+          .asObject();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+    graph = new Graph();
+
+    for (Member aspect : aspects) {
+      graph.add(new Node(aspect.getName()));
+      JsonArray list = aspect.getValue().asArray();
+      for (JsonValue a : list) {
+        graph.connect(aspect.getName(), a.asString());
+      }
+    }
+  }
+
   private void initUI() {
     setTitle("Thaumcraft Helper");
     setSize(300, 200);
     setLocationRelativeTo(null);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
-    
-    add(new Sidebar(), BorderLayout.CENTER);
-    
+
+    ButtonPanel bPanel = new ButtonPanel(graph);
+    add(bPanel);
+
     pack();
   }
 

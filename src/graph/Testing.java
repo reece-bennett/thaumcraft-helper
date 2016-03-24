@@ -14,12 +14,12 @@ public class Testing {
     
     graph.connect("A", new String[] {"B", "C", "D"});
     graph.connect("B", new String[] {"C", "E"});
-    //graph.connect("D", "E");
+    graph.connect("D", "F");
     graph.connect("E", "F");
     
     System.out.println(graph);
     
-    System.out.println(graph.getPath("A", "F", 3));
-    System.out.println(graph.getPath("A", "B", 1));
+    System.out.println(graph.getPath("A", "F", 0));
+    System.out.println(graph.getPath("A", "B", 3));
   }
 }

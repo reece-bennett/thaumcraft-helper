@@ -51,12 +51,11 @@ public class MainFrame extends JFrame {
 
   private void initUI() {
     setTitle("Thaumcraft Helper");
-    setSize(300, 200);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
 
     Sidebar sidebar = new Sidebar(graph);
-    add(sidebar);
+    add(sidebar, BorderLayout.LINE_START);
 
     pack();
     setLocationRelativeTo(null);

@@ -15,8 +15,8 @@ import graph.Graph;
 public class Sidebar extends JPanel implements ActionListener {
 
   private Graph graph;
-
   private ButtonPanel bPanel;
+  private JComboBox<Integer> stepsB;
 
   public Sidebar(Graph graph) {
     this.graph = graph;
@@ -30,31 +30,25 @@ public class Sidebar extends JPanel implements ActionListener {
     gl.setAutoCreateContainerGaps(true);
 
     JLabel stepsL = new JLabel("Steps:");
-    JComboBox<Integer> stepsB = new JComboBox<>(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
-    
+    stepsB = new JComboBox<>(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+
     JButton goB = new JButton("Find connection");
     goB.addActionListener(this);
-    
+
     bPanel = new ButtonPanel(graph);
-    
-    gl.setHorizontalGroup(
-        gl.createParallelGroup(GroupLayout.Alignment.LEADING)
-          .addGroup(gl.createSequentialGroup()
-              .addComponent(stepsL)
-              .addComponent(stepsB)
-              .addComponent(goB))
-          .addComponent(bPanel, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-    
-    gl.setVerticalGroup(gl.createSequentialGroup()
-        .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
-            .addComponent(stepsL)
-            .addComponent(stepsB)
-            .addComponent(goB))
-        .addComponent(bPanel));
+
+    gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.LEADING)
+        .addGroup(gl.createSequentialGroup().addComponent(stepsL).addComponent(stepsB).addComponent(goB))
+        .addComponent(bPanel, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+
+    gl.setVerticalGroup(gl.createSequentialGroup().addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
+        .addComponent(stepsL).addComponent(stepsB).addComponent(goB)).addComponent(bPanel));
   }
 
   @Override
   public void actionPerformed(ActionEvent arg0) {
-    System.out.println("Finding path");
+    System.out.println("Finding path between " + bPanel.getFirst() + " and " + bPanel.getSecond() + " with "
+        + stepsB.getSelectedItem());
+    System.out.println(graph.getPath(bPanel.getFirst(), bPanel.getSecond(), stepsB.getSelectedIndex()));
   }
 }

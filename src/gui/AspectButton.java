@@ -104,4 +104,8 @@ public class AspectButton extends JButton implements MouseListener {
       panel.setState(this, 2);
     }
   }
+
+  public String getAspect() {
+    return aspect;
+  }
 }

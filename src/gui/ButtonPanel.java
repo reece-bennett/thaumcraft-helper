@@ -56,4 +56,12 @@ public class ButtonPanel extends JPanel {
       second = null;
     }
   }
+  
+  public String getFirst() {
+    return first.getAspect();
+  }
+  
+  public String getSecond() {
+    return second.getAspect();
+  }
 }

@@ -33,7 +33,7 @@ public class MainFrame extends JFrame {
     // Read the Json
     JsonObject aspects = null;
     try {
-      aspects = Json.parse(new InputStreamReader(MainFrame.class.getResourceAsStream("/graph/Aspects.json")))
+      aspects = Json.parse(new InputStreamReader(getClass().getResourceAsStream("/graph/Aspects.json")))
           .asObject();
     } catch (IOException e) {
       e.printStackTrace();

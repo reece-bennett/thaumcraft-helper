@@ -26,7 +26,7 @@ public class ButtonPanel extends JPanel {
     setPreferredSize(new Dimension(225, 500));
     
     for (String aspect : graph.getAll().keySet()) {
-      AspectButton button = new AspectButton(aspect);
+      AspectButton button = new AspectButton(aspect, this);
       add(button);
       buttons.add(button);
       
@@ -38,6 +38,22 @@ public class ButtonPanel extends JPanel {
         second = button;
         button.setState(2);
       }
+    }
+  }
+  
+  public void setState(AspectButton button, int state) {
+    button.setState(state);
+    
+    if (state == 1) {
+      first.setState(0);
+      first = button;
+    } else if (state == 2) {
+      second.setState(0);
+      second = button;
+    } else if (state == 0 && first == button) {
+      first = null;
+    } else if (state == 0 && second == button) {
+      second = null;
     }
   }
 }

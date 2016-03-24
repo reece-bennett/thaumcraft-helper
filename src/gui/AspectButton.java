@@ -19,11 +19,13 @@ public class AspectButton extends JButton implements MouseListener {
   // States can be 0: not selected, 1: start aspect, 2: end aspect
   private int state;
   private String aspect;
+  private ButtonPanel panel;
 
-  public AspectButton(String aspect) {
+  public AspectButton(String aspect, ButtonPanel panel) {
     super();
     state = 0;
     this.aspect = aspect;
+    this.panel = panel;
     initButton();
   }
 
@@ -95,9 +97,11 @@ public class AspectButton extends JButton implements MouseListener {
   public void mouseReleased(MouseEvent e) {
     if (SwingUtilities.isLeftMouseButton(e)) {
       System.out.println("Left click on " + aspect);
+      panel.setState(this, 1);
     } else if (SwingUtilities.isRightMouseButton(e)) {
       System.out.println("Right click on " + aspect);
       getModel().setPressed(false);
+      panel.setState(this, 2);
     }
   }
 }

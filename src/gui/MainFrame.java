@@ -58,6 +58,8 @@ public class MainFrame extends JFrame {
     OutputPanel outputPanel = new OutputPanel();
     JScrollPane scrollPane = new JScrollPane(outputPanel);
     add(scrollPane, BorderLayout.CENTER);
+    // The SmartScroller makes the scrollPane always scroll to the end when new paths are added
+    new SmartScroller(scrollPane, SmartScroller.HORIZONTAL, SmartScroller.END);
 
     Sidebar sidebar = new Sidebar(graph, outputPanel);
     add(sidebar, BorderLayout.LINE_START);

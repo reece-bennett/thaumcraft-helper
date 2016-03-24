@@ -1,11 +1,13 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
@@ -34,8 +36,7 @@ public class MainFrame extends JFrame {
     // Read the Json
     JsonObject aspects = null;
     try {
-      aspects = Json.parse(new InputStreamReader(getClass().getResourceAsStream("/graph/Aspects.json")))
-          .asObject();
+      aspects = Json.parse(new InputStreamReader(getClass().getResourceAsStream("/graph/Aspects.json"))).asObject();
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -55,13 +56,15 @@ public class MainFrame extends JFrame {
     setTitle("Thaumcraft Helper");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
-    
+
     // Setting the minimum size helps expand the currently empty output pane
     setMinimumSize(new Dimension(600, 0));
-    
+
     OutputPanel outputPanel = new OutputPanel();
     JScrollPane scrollPane = new JScrollPane(outputPanel);
     add(scrollPane, BorderLayout.CENTER);
+    scrollPane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(10, 0, 10, 10),
+        BorderFactory.createLineBorder(new Color(170, 170, 180))));
     // The SmartScroller makes the scrollPane always scroll to the end when new paths are added
     new SmartScroller(scrollPane, SmartScroller.HORIZONTAL, SmartScroller.END);
 
@@ -74,14 +77,14 @@ public class MainFrame extends JFrame {
 
   public static void setLookAndFeel(String name) {
     try {
-      
+
       LookAndFeelInfo[] installed = UIManager.getInstalledLookAndFeels();
       for (LookAndFeelInfo info : installed) {
         if (info.getName().contains(name)) {
           UIManager.setLookAndFeel(info.getClassName());
         }
       }
-      
+
     } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
         | UnsupportedLookAndFeelException e) {
       e.printStackTrace();
@@ -95,7 +98,7 @@ public class MainFrame extends JFrame {
       @Override
       public void run() {
         setLookAndFeel("Nimbus");
-        
+
         MainFrame frame = new MainFrame();
         frame.setVisible(true);
       }

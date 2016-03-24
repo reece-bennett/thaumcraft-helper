@@ -42,8 +42,6 @@ public class ButtonPanel extends JPanel {
   }
   
   public void setState(AspectButton button, int state) {
-    button.setState(state);
-    
     if (state == 1) {
       first.setState(0);
       first = button;
@@ -55,6 +53,7 @@ public class ButtonPanel extends JPanel {
     } else if (state == 0 && second == button) {
       second = null;
     }
+    button.setState(state);
   }
   
   public String getFirst() {

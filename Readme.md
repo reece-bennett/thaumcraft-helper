@@ -10,4 +10,4 @@ This Thaumcraft Helper aims to aid players in finding combinations of aspects fo
  - Tooltips on icons
  - Add background behind aspects in output pane
  - Make aspect icons smaller in sidebar
- - Make close button smaller
+ - ~~Make close button smaller~~

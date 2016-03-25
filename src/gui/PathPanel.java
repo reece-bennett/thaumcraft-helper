@@ -49,6 +49,7 @@ public class PathPanel extends JPanel implements ActionListener {
 
     JButton close = new JButton("\u2715");
     close.addActionListener(this);
+    close.setBorder(BorderFactory.createEmptyBorder(6, 9, 6, 9));
 
     JPanel pathContainer = new JPanel();
     pathContainer.setLayout(new BoxLayout(pathContainer, BoxLayout.Y_AXIS));

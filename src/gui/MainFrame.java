@@ -57,14 +57,13 @@ public class MainFrame extends JFrame {
     JPanel contentPanel = new JPanel();
     contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
     setContentPane(contentPanel);
-    
+
     setTitle("Thaumcraft Helper");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
 
     // Setting the minimum size helps expand the currently empty output pane
     setMinimumSize(new Dimension(600, 0));
-    
 
     OutputPanel outputPanel = new OutputPanel();
     JScrollPane scrollPane = new JScrollPane(outputPanel);
@@ -86,7 +85,7 @@ public class MainFrame extends JFrame {
 
       LookAndFeelInfo[] installed = UIManager.getInstalledLookAndFeels();
       for (LookAndFeelInfo info : installed) {
-        System.out.println(info);
+        // System.out.println(info);
         if (info.getName().contains(name)) {
           UIManager.setLookAndFeel(info.getClassName());
         }
@@ -105,7 +104,7 @@ public class MainFrame extends JFrame {
       @Override
       public void run() {
         setLookAndFeel("Nimbus");
-        //WebLookAndFeel.install();
+        // WebLookAndFeel.install();
 
         MainFrame frame = new MainFrame();
         frame.setVisible(true);

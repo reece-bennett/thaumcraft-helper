@@ -12,6 +12,9 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+
+import com.alee.laf.WebLookAndFeel;
+
 import javax.swing.UnsupportedLookAndFeelException;
 
 import eclipsesource.json.Json;
@@ -83,6 +86,7 @@ public class MainFrame extends JFrame {
 
       LookAndFeelInfo[] installed = UIManager.getInstalledLookAndFeels();
       for (LookAndFeelInfo info : installed) {
+        System.out.println(info);
         if (info.getName().contains(name)) {
           UIManager.setLookAndFeel(info.getClassName());
         }
@@ -100,7 +104,8 @@ public class MainFrame extends JFrame {
 
       @Override
       public void run() {
-        setLookAndFeel("Nimbus");
+        //setLookAndFeel("Nimbus");
+        WebLookAndFeel.install();
 
         MainFrame frame = new MainFrame();
         frame.setVisible(true);

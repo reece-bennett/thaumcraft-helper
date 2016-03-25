@@ -22,7 +22,7 @@ import graph.Node;
 
 @SuppressWarnings("serial")
 public class PathPanel extends JPanel implements ActionListener {
-  
+
   private LinkedList<Node> path;
   private OutputPanel outputPanel;
 
@@ -31,28 +31,30 @@ public class PathPanel extends JPanel implements ActionListener {
     this.outputPanel = outputPanel;
     initUI();
   }
-  
+
   private void initUI() {
     GroupLayout gl = new GroupLayout(this);
     setLayout(gl);
     gl.setAutoCreateGaps(true);
     gl.setAutoCreateContainerGaps(true);
-    
+
     setBorder(BorderFactory.createLineBorder(new Color(170, 170, 180)));
-    
+
     String start = path.getFirst().getName();
     start = start.substring(0, 1).toUpperCase() + start.substring(1);
     String end = path.getLast().getName();
     end = end.substring(0, 1).toUpperCase() + end.substring(1);
     JLabel header = new JLabel(start + " \u2192 " + end);
     header.setFont(header.getFont().deriveFont(Font.BOLD));
-    
+
     JButton close = new JButton("\u2715");
     close.addActionListener(this);
-    
+
     JPanel pathContainer = new JPanel();
     pathContainer.setLayout(new BoxLayout(pathContainer, BoxLayout.Y_AXIS));
-    
+
+    JLabel arrow = null;
+
     for (Node n : path) {
       JLabel aspect = new JLabel();
       try {
@@ -63,24 +65,19 @@ public class PathPanel extends JPanel implements ActionListener {
       }
       aspect.setAlignmentX(Component.CENTER_ALIGNMENT);
       pathContainer.add(aspect);
-      
-      if (path.getLast() != n) {
-        JLabel arrow = new JLabel("\u2193");
-        arrow.setAlignmentX(Component.CENTER_ALIGNMENT);
-        pathContainer.add(arrow);
-      }
+
+      arrow = new JLabel("\u2193");
+      arrow.setAlignmentX(Component.CENTER_ALIGNMENT);
+      pathContainer.add(arrow);
     }
-    
+    // Remove the trailing arrow
+    pathContainer.remove(arrow);
+
     gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
-        .addGroup(gl.createSequentialGroup()
-            .addComponent(header)
-            .addComponent(close))
-        .addComponent(pathContainer));
-    
+        .addGroup(gl.createSequentialGroup().addComponent(header).addComponent(close)).addComponent(pathContainer));
+
     gl.setVerticalGroup(gl.createSequentialGroup()
-        .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE)
-            .addComponent(header)
-            .addComponent(close))
+        .addGroup(gl.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(header).addComponent(close))
         .addComponent(pathContainer));
   }
 

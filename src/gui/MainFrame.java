@@ -106,8 +106,8 @@ public class MainFrame extends JFrame {
 
       @Override
       public void run() {
-        // setLookAndFeel("Nimbus");
-        WebLookAndFeel.install();
+        setLookAndFeel("Nimbus");
+        //WebLookAndFeel.install();
 
         MainFrame frame = new MainFrame();
         frame.setVisible(true);

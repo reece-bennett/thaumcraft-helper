@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.io.IOException;
@@ -9,13 +8,13 @@ import java.io.InputStreamReader;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import com.alee.laf.WebLookAndFeel;
-
-import javax.swing.UnsupportedLookAndFeelException;
 
 import eclipsesource.json.Json;
 import eclipsesource.json.JsonArray;
@@ -56,19 +55,22 @@ public class MainFrame extends JFrame {
   }
 
   private void initUI() {
+    // Give the JFrame an inset of 10px
+    JPanel contentPanel = new JPanel();
+    contentPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    setContentPane(contentPanel);
+    
     setTitle("Thaumcraft Helper");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
 
     // Setting the minimum size helps expand the currently empty output pane
     setMinimumSize(new Dimension(600, 0));
+    
 
     OutputPanel outputPanel = new OutputPanel();
     JScrollPane scrollPane = new JScrollPane(outputPanel);
     add(scrollPane, BorderLayout.CENTER);
-    scrollPane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(10, 0, 10, 10),
-        BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(170, 170, 180)),
-            BorderFactory.createEmptyBorder(4, 4, 4, 4))));
     // Force the scroll bar to always show
     scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     // The SmartScroller makes the scrollPane always scroll to the end when new paths are added
@@ -104,7 +106,7 @@ public class MainFrame extends JFrame {
 
       @Override
       public void run() {
-        //setLookAndFeel("Nimbus");
+        // setLookAndFeel("Nimbus");
         WebLookAndFeel.install();
 
         MainFrame frame = new MainFrame();

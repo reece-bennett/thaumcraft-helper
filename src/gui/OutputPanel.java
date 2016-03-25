@@ -16,6 +16,7 @@ public class OutputPanel extends JPanel {
   
   private void initUI() {
     setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+    setBorder(null);
   }
   
   public void addPath(LinkedList<Node> path) {

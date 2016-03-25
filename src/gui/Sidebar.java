@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 
+import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -31,7 +32,7 @@ public class Sidebar extends JPanel implements ActionListener {
     GroupLayout gl = new GroupLayout(this);
     setLayout(gl);
     gl.setAutoCreateGaps(true);
-    gl.setAutoCreateContainerGaps(true);
+    setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 10));
 
     JLabel stepsL = new JLabel("Steps:");
     stepsB = new JComboBox<>(new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });

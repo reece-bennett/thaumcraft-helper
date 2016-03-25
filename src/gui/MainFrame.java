@@ -14,8 +14,6 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import com.alee.laf.WebLookAndFeel;
-
 import eclipsesource.json.Json;
 import eclipsesource.json.JsonArray;
 import eclipsesource.json.JsonObject;

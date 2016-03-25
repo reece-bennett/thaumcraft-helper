@@ -2,6 +2,7 @@ package gui;
 
 import java.util.LinkedList;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -16,7 +17,7 @@ public class OutputPanel extends JPanel {
   
   private void initUI() {
     setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-    setBorder(null);
+    setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
   }
   
   public void addPath(LinkedList<Node> path) {

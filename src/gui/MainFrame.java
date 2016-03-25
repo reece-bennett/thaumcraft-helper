@@ -64,7 +64,10 @@ public class MainFrame extends JFrame {
     JScrollPane scrollPane = new JScrollPane(outputPanel);
     add(scrollPane, BorderLayout.CENTER);
     scrollPane.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(10, 0, 10, 10),
-        BorderFactory.createLineBorder(new Color(170, 170, 180))));
+        BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(new Color(170, 170, 180)),
+            BorderFactory.createEmptyBorder(4, 4, 4, 4))));
+    // Force the scroll bar to always show
+    scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     // The SmartScroller makes the scrollPane always scroll to the end when new paths are added
     new SmartScroller(scrollPane, SmartScroller.HORIZONTAL, SmartScroller.END);
 

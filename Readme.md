@@ -14,4 +14,4 @@ This Thaumcraft Helper aims to aid players in finding combinations of aspects fo
  - Make aspect icons smaller in sidebar
  - ~~Make close button smaller~~
  - Class to load and cache images
- - Stop tooltips going off screen
+ - ~~Stop tooltips going off screen~~

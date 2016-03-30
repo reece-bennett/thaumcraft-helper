@@ -133,6 +133,6 @@ public class AspectButton extends JButton implements MouseListener, MouseMotionL
   @Override
   public void mouseMoved(MouseEvent e) {
     Point p = SwingUtilities.convertPoint(this, e.getX(), e.getY(), mainFrame);
-    toolTip.setPos((int) p.getX() + 4, (int) p.getY() - 38);
+    toolTip.setPos((int) p.getX() + 4, (int) p.getY() - 20);
   }
 }

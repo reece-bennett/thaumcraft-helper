@@ -67,6 +67,7 @@ public class PathPanel extends JPanel implements ActionListener {
     for (Node n : path) {
       JLabel aspect = new JLabel();
       AspectToolTip toolTip = new AspectToolTip(mainFrame, n.getName());
+      
       aspect.addMouseListener(new MouseListener() {
         
         @Override
@@ -92,18 +93,20 @@ public class PathPanel extends JPanel implements ActionListener {
         public void mouseClicked(MouseEvent arg0) {
         }
       });
+      
       aspect.addMouseMotionListener(new MouseMotionListener() {
         
         @Override
         public void mouseMoved(MouseEvent e) {
           Point p = SwingUtilities.convertPoint(aspect, e.getX(), e.getY(), mainFrame);
-          toolTip.setPos((int) p.getX() + 4, (int) p.getY() - 38);
+          toolTip.setPos((int) p.getX() + 4, (int) p.getY() - 20);
         }
         
         @Override
         public void mouseDragged(MouseEvent e) {
         }
       });
+      
       try {
         Image img = ImageIO.read(getClass().getResource("/aspectIcons/" + n.getName() + ".png"));
         aspect.setIcon(new ImageIcon(img));

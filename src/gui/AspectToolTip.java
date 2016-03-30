@@ -18,6 +18,7 @@ public class AspectToolTip extends JPanel {
   private int y;
   private int width;
   private int height;
+  private MainFrame mainFrame;
 
   public AspectToolTip(MainFrame mainFrame, String aspectName) {
     this.aspectName = aspectName;
@@ -25,11 +26,12 @@ public class AspectToolTip extends JPanel {
     y = 0;
     width = 100;
     height = 100;
-    initUI(mainFrame);
+    this.mainFrame = mainFrame;
+    initUI();
   }
   
-  private void initUI(MainFrame mainFrame) {
-    setBackground(new Color(200, 200, 200, 230));
+  private void initUI() {
+    setBackground(new Color(200, 200, 200, 200));
 
     GroupLayout gl = new GroupLayout(this);
     setLayout(gl);
@@ -102,6 +104,18 @@ public class AspectToolTip extends JPanel {
   public void setPos(int x, int y) {
     this.x = x;
     this.y = y;
+    
+    int mainWidth = mainFrame.getWidth() - mainFrame.getInsets().left - mainFrame.getInsets().right;
+    int mainHeight = mainFrame.getHeight() - mainFrame.getInsets().top - mainFrame.getInsets().bottom;
+    
+    if (x > mainWidth - width) {
+      x = mainWidth - width; 
+    }
+    
+    if (y > mainHeight - height) { 
+      y = mainHeight - height; 
+    }
+    
     setBounds(x, y, width, height);
   }
 }

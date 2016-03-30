@@ -73,7 +73,7 @@ public class MainFrame extends JFrame {
     // The SmartScroller makes the scrollPane always scroll to the end when new paths are added
     new SmartScroller(scrollPane, SmartScroller.HORIZONTAL, SmartScroller.END);
 
-    Sidebar sidebar = new Sidebar(graph, outputPanel);
+    Sidebar sidebar = new Sidebar(this, outputPanel);
     add(sidebar, BorderLayout.LINE_START);
 
     pack();
@@ -110,5 +110,9 @@ public class MainFrame extends JFrame {
         frame.setVisible(true);
       }
     });
+  }
+
+  public Graph getGraph() {
+    return graph;
   }
 }

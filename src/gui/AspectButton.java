@@ -2,30 +2,39 @@ package gui;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 @SuppressWarnings("serial")
-public class AspectButton extends JButton implements MouseListener {
+public class AspectButton extends JButton implements MouseListener, MouseMotionListener {
 
   // States can be 0: not selected, 1: start aspect, 2: end aspect
   private int state;
   private String aspect;
   private ButtonPanel panel;
+  private JLayeredPane lp;
+  private AspectToolTip toolTip;
+  private MainFrame mainFrame;
 
-  public AspectButton(String aspect, ButtonPanel panel) {
+  public AspectButton(String aspect, ButtonPanel panel, MainFrame mainFrame) {
     super();
     state = 0;
     this.aspect = aspect;
     this.panel = panel;
+    this.lp = mainFrame.getLayeredPane();
+    this.mainFrame = mainFrame;
+    toolTip = new AspectToolTip(aspect);
     initButton();
   }
 
@@ -34,6 +43,7 @@ public class AspectButton extends JButton implements MouseListener {
     setFocusable(false);
 
     addMouseListener(this);
+    addMouseMotionListener(this);
 
     try {
       Image img = ImageIO.read(getClass().getResource("/aspectIcons/" + aspect + ".png"));
@@ -79,10 +89,13 @@ public class AspectButton extends JButton implements MouseListener {
 
   @Override
   public void mouseEntered(MouseEvent e) {
+    lp.add(toolTip, 100);
   }
 
   @Override
   public void mouseExited(MouseEvent e) {
+    lp.remove(toolTip);
+    lp.repaint();
   }
 
   @Override
@@ -107,5 +120,16 @@ public class AspectButton extends JButton implements MouseListener {
 
   public String getAspect() {
     return aspect;
+  }
+
+  @Override
+  public void mouseDragged(MouseEvent e) {
+  }
+
+  @Override
+  public void mouseMoved(MouseEvent e) {
+    System.out.println(aspect + " " + e.getX() + " " + e.getY());
+    Point p = SwingUtilities.convertPoint(this, e.getX(), e.getY(), mainFrame);
+    toolTip.setPos((int) p.getX() + 4, (int) p.getY() - 38);
   }
 }

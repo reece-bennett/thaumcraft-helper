@@ -16,17 +16,17 @@ public class ButtonPanel extends JPanel {
   private AspectButton first;
   private AspectButton second;
 
-  public ButtonPanel(Graph graph) {
-    this.graph = graph;
+  public ButtonPanel(MainFrame mainFrame) {
+    this.graph = mainFrame.getGraph();
     buttons = new ArrayList<>();
-    initUI();
+    initUI(mainFrame);
   }
   
-  private void initUI() {
+  private void initUI(MainFrame mainFrame) {
     setPreferredSize(new Dimension(225, 500));
     
     for (String aspect : graph.getAll().keySet()) {
-      AspectButton button = new AspectButton(aspect, this);
+      AspectButton button = new AspectButton(aspect, this, mainFrame);
       add(button);
       buttons.add(button);
       

@@ -22,13 +22,13 @@ public class Sidebar extends JPanel implements ActionListener {
   private JComboBox<Integer> stepsB;
   private OutputPanel outputPanel;
 
-  public Sidebar(Graph graph, OutputPanel outputPanel) {
-    this.graph = graph;
+  public Sidebar(MainFrame mainFrame, OutputPanel outputPanel) {
+    this.graph = mainFrame.getGraph();
     this.outputPanel = outputPanel;
-    initUI();
+    initUI(mainFrame);
   }
 
-  private void initUI() {
+  private void initUI(MainFrame mainFrame) {
     GroupLayout gl = new GroupLayout(this);
     setLayout(gl);
     gl.setAutoCreateGaps(true);
@@ -40,7 +40,7 @@ public class Sidebar extends JPanel implements ActionListener {
     JButton goB = new JButton("Find connection");
     goB.addActionListener(this);
 
-    bPanel = new ButtonPanel(graph);
+    bPanel = new ButtonPanel(mainFrame);
 
     gl.setHorizontalGroup(gl.createParallelGroup(GroupLayout.Alignment.LEADING)
         .addGroup(gl.createSequentialGroup().addComponent(stepsL).addComponent(stepsB).addComponent(goB))

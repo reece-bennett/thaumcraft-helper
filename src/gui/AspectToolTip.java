@@ -1,7 +1,12 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -18,17 +23,40 @@ public class AspectToolTip extends JPanel {
     this.aspectName = aspectName;
     x = 0;
     y = 0;
-    width = 50;
-    height = 50;
+    width = 100;
+    height = 100;
     initUI();
   }
   
   private void initUI() {
-    System.out.println(aspectName);
-    setBackground(new Color(200, 200, 200));
-    setBounds(x, x, width, height);
-    JLabel label = new JLabel(aspectName);
-    add(label);
+    setBackground(new Color(200, 200, 200, 230));
+
+    GroupLayout gl = new GroupLayout(this);
+    setLayout(gl);
+    gl.setAutoCreateContainerGaps(true);
+    gl.setAutoCreateGaps(true);
+    
+    JLabel aspectIcon = null;
+    try {
+      Image img = ImageIO.read(getClass().getResource("/aspectIcons/" + aspectName + ".png"));
+      aspectIcon = new JLabel(new ImageIcon(img));
+    } catch (IOException | IllegalArgumentException e) {
+      System.err.println("Aspect icon for " + aspectName + " not found: " + e.getMessage());
+    }
+    
+    JLabel name = new JLabel(aspectName);
+    
+    gl.setHorizontalGroup(gl.createSequentialGroup()
+        .addComponent(aspectIcon)
+        .addComponent(name));
+    
+    gl.setVerticalGroup(gl.createParallelGroup()
+        .addGroup(gl.createSequentialGroup())
+          .addComponent(aspectIcon)
+          .addComponent(name));
+    
+    width = getPreferredSize().width;
+    height = getPreferredSize().height;
   }
   
   public void setPos(int x, int y) {

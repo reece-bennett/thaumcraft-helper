@@ -65,7 +65,7 @@ public class MainFrame extends JFrame {
     // Setting the minimum size helps expand the currently empty output pane
     setMinimumSize(new Dimension(600, 0));
 
-    OutputPanel outputPanel = new OutputPanel();
+    OutputPanel outputPanel = new OutputPanel(this);
     JScrollPane scrollPane = new JScrollPane(outputPanel);
     add(scrollPane, BorderLayout.CENTER);
     // Force the scroll bar to always show

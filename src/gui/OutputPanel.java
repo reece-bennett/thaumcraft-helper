@@ -11,7 +11,10 @@ import graph.Node;
 @SuppressWarnings("serial")
 public class OutputPanel extends JPanel {
   
-  public OutputPanel() {
+  private MainFrame mainFrame;
+  
+  public OutputPanel(MainFrame mainFrame) {
+    this.mainFrame = mainFrame;
     initUI();
   }
   
@@ -21,7 +24,7 @@ public class OutputPanel extends JPanel {
   }
   
   public void addPath(LinkedList<Node> path) {
-    PathPanel panel = new PathPanel(path, this);
+    PathPanel panel = new PathPanel(mainFrame, path, this);
     panel.setAlignmentY(JPanel.TOP_ALIGNMENT);
     add(panel);
     revalidate();

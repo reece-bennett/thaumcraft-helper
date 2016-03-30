@@ -104,6 +104,8 @@ public class AspectButton extends JButton implements MouseListener, MouseMotionL
       getModel().setArmed(true);
       getModel().setPressed(true);
     }
+    // Keeps the tool-tip on top of the button
+    lp.repaint();
   }
 
   @Override
@@ -116,6 +118,8 @@ public class AspectButton extends JButton implements MouseListener, MouseMotionL
       getModel().setPressed(false);
       panel.setState(this, 2);
     }
+    // Keeps the tool-tip on top of the button
+    lp.repaint();
   }
 
   public String getAspect() {

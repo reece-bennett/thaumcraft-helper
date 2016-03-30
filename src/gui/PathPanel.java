@@ -66,7 +66,7 @@ public class PathPanel extends JPanel implements ActionListener {
 
     for (Node n : path) {
       JLabel aspect = new JLabel();
-      AspectToolTip toolTip = new AspectToolTip(n.getName());
+      AspectToolTip toolTip = new AspectToolTip(mainFrame, n.getName());
       aspect.addMouseListener(new MouseListener() {
         
         @Override

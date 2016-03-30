@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.LinkedHashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -18,7 +19,6 @@ import eclipsesource.json.Json;
 import eclipsesource.json.JsonArray;
 import eclipsesource.json.JsonObject;
 import eclipsesource.json.JsonObject.Member;
-import eclipsesource.json.JsonValue;
 import graph.Graph;
 import graph.Node;
 
@@ -26,8 +26,10 @@ import graph.Node;
 public class MainFrame extends JFrame {
 
   private Graph graph;
+  private LinkedHashMap<String, String[]> aspectMap;
 
   public MainFrame() {
+    aspectMap = new LinkedHashMap<>();
     initGraph();
     initUI();
   }
@@ -44,10 +46,22 @@ public class MainFrame extends JFrame {
     graph = new Graph();
 
     for (Member aspect : aspects) {
-      graph.add(new Node(aspect.getName()));
+      String name = aspect.getName();
       JsonArray list = aspect.getValue().asArray();
-      for (JsonValue a : list) {
-        graph.connect(aspect.getName(), a.asString());
+      
+      graph.add(new Node(name));
+      
+      if (list.size() == 0) {
+        aspectMap.put(name, null);
+      } else if (list.size() == 2) {
+        String[] connections = new String[2];
+        for (int i = 0; i < 2; i++) {
+          graph.connect(aspect.getName(), list.get(i).asString());
+          connections[i] = list.get(i).asString();
+        }
+        aspectMap.put(name, connections);
+      } else {
+        System.err.println("List for " + name + " is of length " + list.size());
       }
     }
   }
@@ -114,5 +128,9 @@ public class MainFrame extends JFrame {
 
   public Graph getGraph() {
     return graph;
+  }
+
+  public LinkedHashMap<String, String[]> getAspects() {
+    return aspectMap;
   }
 }

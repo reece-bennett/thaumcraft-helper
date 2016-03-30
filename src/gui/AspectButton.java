@@ -34,7 +34,7 @@ public class AspectButton extends JButton implements MouseListener, MouseMotionL
     this.panel = panel;
     this.lp = mainFrame.getLayeredPane();
     this.mainFrame = mainFrame;
-    toolTip = new AspectToolTip(aspect);
+    toolTip = new AspectToolTip(mainFrame, aspect);
     initButton();
   }
 

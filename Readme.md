@@ -2,6 +2,10 @@ This Thaumcraft Helper aims to aid players in finding combinations of aspects fo
 
 [Minecraft Forum thread](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-tools/2643285-thaumcraft-research-helper-java)
 
+# Screenshots
+![](http://i.imgur.com/1Rd2Dkz.png)
+![](http://i.imgur.com/9ChkMRn.png)
+
 # To-do
  - ~~Fill in actual Thaumcraft aspects as nodes and their connections~~
  - Javadoc

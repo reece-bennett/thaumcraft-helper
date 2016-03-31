@@ -3,17 +3,14 @@ package gui;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.IOException;
 import java.util.LinkedList;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout;
@@ -107,12 +104,7 @@ public class PathPanel extends JPanel implements ActionListener {
         }
       });
       
-      try {
-        Image img = ImageIO.read(getClass().getResource("/aspectIcons/" + n.getName() + ".png"));
-        aspect.setIcon(new ImageIcon(img));
-      } catch (IOException | IllegalArgumentException e) {
-        System.err.println("Aspect icon for " + n.getName() + " not found: " + e.getMessage());
-      }
+      aspect.setIcon(new ImageIcon(mainFrame.getImage(n.getName())));
       aspect.setAlignmentX(Component.CENTER_ALIGNMENT);
       pathContainer.add(aspect);
 

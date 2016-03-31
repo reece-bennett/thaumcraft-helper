@@ -1,14 +1,11 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -45,12 +42,7 @@ public class AspectButton extends JButton implements MouseListener, MouseMotionL
     addMouseListener(this);
     addMouseMotionListener(this);
 
-    try {
-      Image img = ImageIO.read(getClass().getResource("/aspectIcons/" + aspect + ".png"));
-      setIcon(new ImageIcon(img));
-    } catch (IOException | IllegalArgumentException e) {
-      System.err.println("Aspect icon for " + aspect + " not found: " + e.getMessage());
-    }
+    setIcon(new ImageIcon(mainFrame.getImage(aspect)));
   }
   
   private Border makePadding(int width) {

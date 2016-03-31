@@ -6,6 +6,7 @@ import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.LayoutStyle;
 
 @SuppressWarnings("serial")
 public class AspectToolTip extends JPanel {
@@ -37,16 +38,19 @@ public class AspectToolTip extends JPanel {
     JLabel equals = new JLabel("=");
     JLabel plus = new JLabel("+");
     
+    // Make the enum a little bit shorter
+    LayoutStyle.ComponentPlacement r = LayoutStyle.ComponentPlacement.RELATED;
+    
     String[] ingredients = mainFrame.getIngredients().get(aspectName);
     if (ingredients == null) {
       gl.setHorizontalGroup(gl.createSequentialGroup()
-          .addComponent(aspectIcon).addGap(6)
+          .addComponent(aspectIcon).addPreferredGap(r)
           .addGroup(gl.createParallelGroup()
               .addComponent(name)
               .addComponent(translation)));
       
       gl.setVerticalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
-          .addComponent(aspectIcon).addGap(6)
+          .addComponent(aspectIcon)
           .addGroup(gl.createSequentialGroup()
               .addComponent(name)
               .addComponent(translation)));
@@ -62,33 +66,33 @@ public class AspectToolTip extends JPanel {
       JLabel translation2 = new JLabel(t2.substring(0, 1).toUpperCase() + t2.substring(1));
       
       gl.setHorizontalGroup(gl.createSequentialGroup()
-          .addComponent(aspectIcon).addGap(6)
+          .addComponent(aspectIcon).addPreferredGap(r)
           .addGroup(gl.createParallelGroup()
           .addComponent(name)
-          .addComponent(translation)).addGap(6)
-          .addComponent(equals).addGap(6)
-          .addComponent(part1).addGap(6)
+          .addComponent(translation)).addPreferredGap(r)
+          .addComponent(equals).addPreferredGap(r)
+          .addComponent(part1).addPreferredGap(r)
           .addGroup(gl.createParallelGroup()
           .addComponent(part1Name)
-          .addComponent(translation1)).addGap(6)
-          .addComponent(plus).addGap(6)
-          .addComponent(part2).addGap(6)
+          .addComponent(translation1)).addPreferredGap(r)
+          .addComponent(plus).addPreferredGap(r)
+          .addComponent(part2).addPreferredGap(r)
           .addGroup(gl.createParallelGroup()
           .addComponent(part2Name)
           .addComponent(translation2)));
       
       gl.setVerticalGroup(gl.createParallelGroup(GroupLayout.Alignment.CENTER)
-          .addComponent(aspectIcon).addGap(6)
+          .addComponent(aspectIcon)
           .addGroup(gl.createSequentialGroup()
           .addComponent(name)
-          .addComponent(translation)).addGap(6)
-          .addComponent(equals).addGap(6)
-          .addComponent(part1).addGap(6)
+          .addComponent(translation))
+          .addComponent(equals)
+          .addComponent(part1)
           .addGroup(gl.createSequentialGroup()
           .addComponent(part1Name)
-          .addComponent(translation1)).addGap(6)
-          .addComponent(plus).addGap(6)
-          .addComponent(part2).addGap(6)
+          .addComponent(translation1))
+          .addComponent(plus)
+          .addComponent(part2)
           .addGroup(gl.createSequentialGroup()
           .addComponent(part2Name)
           .addComponent(translation2)));

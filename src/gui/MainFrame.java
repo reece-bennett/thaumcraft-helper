@@ -27,18 +27,20 @@ import graph.Node;
 public class MainFrame extends JFrame {
 
   private Graph graph;
-  private LinkedHashMap<String, String[]> aspectMap;
+  private LinkedHashMap<String, String[]> aspectIngredients;
+  private LinkedHashMap<String, String> aspectTranslations;
   private ImageStore imageStore;
 
   public MainFrame() {
-    aspectMap = new LinkedHashMap<>();
+    aspectIngredients = new LinkedHashMap<>();
+    aspectTranslations = new LinkedHashMap<>();
     imageStore = new ImageStore();
     initGraph();
     initUI();
   }
 
   private void initGraph() {
-    // Read the Json
+    // Read the aspect Json
     JsonObject aspects = null;
     try {
       aspects = Json.parse(new InputStreamReader(getClass().getResourceAsStream("/graph/Aspects.json"))).asObject();
@@ -57,17 +59,29 @@ public class MainFrame extends JFrame {
       graph.add(new Node(name));
 
       if (list.size() == 0) {
-        aspectMap.put(name, null);
+        aspectIngredients.put(name, null);
       } else if (list.size() == 2) {
         String[] connections = new String[2];
         for (int i = 0; i < 2; i++) {
           graph.connect(aspect.getName(), list.get(i).asString());
           connections[i] = list.get(i).asString();
         }
-        aspectMap.put(name, connections);
+        aspectIngredients.put(name, connections);
       } else {
         System.err.println("List for " + name + " is of length " + list.size());
       }
+    }
+    
+    // Read the translation Json
+    JsonObject translations = null;
+    try {
+      translations = Json.parse(new InputStreamReader(getClass().getResourceAsStream("/graph/Translations.json"))).asObject();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    
+    for (Member t : translations) {
+      aspectTranslations.put(t.getName(), t.getValue().asString());
     }
   }
 
@@ -135,11 +149,15 @@ public class MainFrame extends JFrame {
     return graph;
   }
 
-  public LinkedHashMap<String, String[]> getAspects() {
-    return aspectMap;
+  public LinkedHashMap<String, String[]> getIngredients() {
+    return aspectIngredients;
   }
   
   public Image getImage(String name) {
     return imageStore.getImage(name);
+  }
+  
+  public String translate(String aspect) {
+    return aspectTranslations.get(aspect);
   }
 }

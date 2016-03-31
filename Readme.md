@@ -17,4 +17,4 @@ This Thaumcraft Helper aims to aid players in finding combinations of aspects fo
  - ~~Stop tooltips going off screen~~
  - Auto-solver for research note
  - Options for different Thaumcraft versions (changes aspects)
- - Add translations to tooltips
+ - ~~Add translations to tooltips~~

@@ -57,12 +57,12 @@ public class AspectToolTip extends JPanel {
     } else {
       JLabel part1 = new JLabel(new ImageIcon(mainFrame.getImage(ingredients[0])));
       JLabel part1Name = new JLabel(ingredients[0].substring(0, 1).toUpperCase() + ingredients[0].substring(1));
-      String t1 = mainFrame.translate(aspectName);
+      String t1 = mainFrame.translate(ingredients[0]);
       JLabel translation1 = new JLabel(t1.substring(0, 1).toUpperCase() + t1.substring(1));
       
       JLabel part2 = new JLabel(new ImageIcon(mainFrame.getImage(ingredients[1])));
       JLabel part2Name = new JLabel(ingredients[1].substring(0, 1).toUpperCase() + ingredients[1].substring(1));
-      String t2 = mainFrame.translate(aspectName);
+      String t2 = mainFrame.translate(ingredients[1]);
       JLabel translation2 = new JLabel(t2.substring(0, 1).toUpperCase() + t2.substring(1));
       
       gl.setHorizontalGroup(gl.createSequentialGroup()

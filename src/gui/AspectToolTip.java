@@ -34,6 +34,7 @@ public class AspectToolTip extends JPanel {
     JLabel name = new JLabel(aspectName.substring(0, 1).toUpperCase() + aspectName.substring(1));
     String t = mainFrame.translate(aspectName);
     JLabel translation = new JLabel(t.substring(0, 1).toUpperCase() + t.substring(1));
+    translation.setFont(translation.getFont().deriveFont(translation.getFont().getSize() - 2f));
     
     JLabel equals = new JLabel("=");
     JLabel plus = new JLabel("+");
@@ -59,11 +60,13 @@ public class AspectToolTip extends JPanel {
       JLabel part1Name = new JLabel(ingredients[0].substring(0, 1).toUpperCase() + ingredients[0].substring(1));
       String t1 = mainFrame.translate(ingredients[0]);
       JLabel translation1 = new JLabel(t1.substring(0, 1).toUpperCase() + t1.substring(1));
+      translation1.setFont(translation1.getFont().deriveFont(translation1.getFont().getSize() - 2f));
       
       JLabel part2 = new JLabel(new ImageIcon(mainFrame.getImage(ingredients[1])));
       JLabel part2Name = new JLabel(ingredients[1].substring(0, 1).toUpperCase() + ingredients[1].substring(1));
       String t2 = mainFrame.translate(ingredients[1]);
       JLabel translation2 = new JLabel(t2.substring(0, 1).toUpperCase() + t2.substring(1));
+      translation2.setFont(translation2.getFont().deriveFont(translation2.getFont().getSize() - 2f));
       
       gl.setHorizontalGroup(gl.createSequentialGroup()
           .addComponent(aspectIcon).addPreferredGap(r)

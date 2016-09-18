@@ -1,6 +1,7 @@
 This Thaumcraft Helper aims to aid players in finding combinations of aspects for the Thaumcraft 4 research mini game. You will select the start and end points of the branch, number of intermediate steps (if a specific number is required, otherwise the minimum path is found.
 
 [Minecraft Forum thread](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-tools/2643285-thaumcraft-research-helper-java)
+
 [Latest releases](https://github.com/PhyscoKillerMonkey/thaumcraft-helper/releases)
 
 # Screenshots
